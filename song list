@@ -1,0 +1,16 @@
+import random 
+print("-----My playlist-----")
+song1 = input("name 5 songs(1/5):")
+song2 = input("name 5 songs(2/5):")
+song3 = input("name 5 songs(3/5):")
+song4 = input("name 5 songs(4/5):")
+song5 = input("name 5 songs(5/5):")
+playlist = [song1, song2, song3, song4, song5]
+random_pool = ["bad habit", "levitating", "assumptions", "billie jean", "Thriller"]
+
+song = random.choice(random_pool)
+playlist.append(song)
+
+print("\n new playlist")
+for i, song in enumerate(playlist, 1):
+    print(f"-{song}")
