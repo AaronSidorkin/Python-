@@ -1,0 +1,45 @@
+import heapq
+ 
+city_map = {
+    "Center":   {"Station": 5,  "Park": 8,   "Mall": 12, "McDonalds": 16,  "Walmart": 10, "Bank": 20},
+    "Station":  {"Center": 5,   "Airport": 20, "Market": 7, "McDonalds": 13, "Walmart": 10, "Bank": 20},
+    "Park":     {"Center": 8,   "Market": 4,  "Stadium": 10, "McDonalds": 9,  "Walmart": 10, "Bank": 20},
+    "Mall":     {"Center": 12,  "Stadium": 6, "McDonalds": 7,  "Walmart": 10, "Bank": 20},
+    "Market":   {"Station": 7,  "Park": 4, "Airport": 15,"McDonalds": 15,  "Walmart": 10, "Bank": 20},
+    "Stadium":  {"Park": 10,    "Mall": 6,"McDonalds": 5,  "Walmart": 10, "Bank": 20},
+    "Airport":  {"Station": 20, "Market": 15, "McDonalds": 10,  "Walmart": 10, "Bank": 20},
+    "McDonalds": {"Station": 20, "Market": 15, "Center": 8, "Stadium": 10,  "Walmart": 10, "Bank": 20},
+    "Walmart": {"Station": 10, "Park": 10, "Mall": 10, "McDonalds": 10, "Airport": 11, "Bank": 20},
+    "Bank": {"Station": 21,  "Park": 20,   "Mall": 20, "McDonalds":20,  "Walmart": 20 },
+
+}
+ 
+def find_fastest_path(graph, start, end):
+    heap = [(0, start, [start])]
+    visited = set()
+ 
+    while heap:
+        cost, current, path = heapq.heappop(heap)
+        if current in visited:
+            continue
+        visited.add(current)
+        if current == end:
+            return cost, path
+        for neighbor, time in graph[current].items():
+            if neighbor not in visited:
+                heapq.heappush(heap, (cost + time, neighbor, path + [neighbor]))
+ 
+    return float("inf"), []
+def find_ride(pickup, destination):
+    time, route = find_fastest_path(city_map, pickup, destination)
+    fare = 2.50 + time * 1.80
+
+ 
+    print(f"\n  Uber — Ride Found!")
+    print(f"  From:     {pickup}")
+    print(f"  To:       {destination}")
+    print(f"   Route:    {' → '.join(route)}")
+    print(f"   Duration: {time} min")
+    print(f"  Fare:     ${fare:.2f}")
+ 
+find_ride( "Walmart", "Bank")
