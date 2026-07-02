@@ -1,0 +1,16 @@
+import sys
+
+player_name = "George"
+player_age = 90.5
+playery_score = 34
+is_online = True
+
+print("=== TYPE INSPECTOR ===")
+print(f"player_name -> type: {type(player_name).__name__}")
+print(f"player_age -> type: {type(player_age).__name__}")
+print(f"player_score -> type: {type(player_score).__name__}")
+
+print("\n === MEMORY SIZE(bytes) ===")
+print(f"player_name  -> {sys.getsizeof(player_name)} bytes")
+print(f"player_score -> {sys.getsizeof(player_score)} bytes")
+print(f"player_age -> {sys.getsizeof(player_age)} bytes")
