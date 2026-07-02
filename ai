@@ -1,0 +1,22 @@
+while True:
+    user_input = input("You: ")
+    
+    if user_input.lower() == "exit":
+       print("AI: goodbye!")
+       break
+    elif "hello" in user_input:
+       print("AI: Hi, nice to meet you!")
+    elif "My favorite color is" in user_input:
+        color = user_input.replace("my favorite color is", "")
+        print("AI: that's a very nice color!")
+    elif "How are you" in user_input:
+       print("Ai: I'm doing great!")
+    elif "what is my name" in user_input:
+       if name:
+        print("Your name is", name)
+    elif "joke" in user_input:
+        print("AI: why don't scientists trust atoms? because they make everything up!")
+    elif "im sad" in user_input:
+        print("AI: I am sorry to hear that! Hope you feel better soon.")
+    else:
+        print("I dont know your name yet.")
